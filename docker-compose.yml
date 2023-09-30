@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    enviroment:
+      MYSQL_ROOW_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  python:
+    build: ./python-app
+    depends_on:
+      - mysql
+    volumes:
+      - ./python-app:/app
+      
